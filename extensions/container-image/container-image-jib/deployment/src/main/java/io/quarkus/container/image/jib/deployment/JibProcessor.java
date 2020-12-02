@@ -254,6 +254,9 @@ public class JibProcessor {
             for (int port : jibConfig.ports) {
                 jibContainerBuilder.addExposedPort(Port.tcp(port));
             }
+
+            jibConfig.user.ifPresent(jibContainerBuilder::setUser);
+
             return jibContainerBuilder;
 
         } catch (IOException e) {
@@ -339,6 +342,9 @@ public class JibProcessor {
             for (int port : jibConfig.ports) {
                 jibContainerBuilder.addExposedPort(Port.tcp(port));
             }
+
+            jibConfig.user.ifPresent(jibContainerBuilder::setUser);
+
             return jibContainerBuilder;
         } catch (InvalidImageReferenceException e) {
             throw new RuntimeException(e);
